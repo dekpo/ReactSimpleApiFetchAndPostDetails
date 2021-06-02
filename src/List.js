@@ -1,6 +1,7 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-class App extends React.Component {
+class List extends React.Component {
 
   state = {
     error: null,
@@ -45,17 +46,18 @@ class App extends React.Component {
       return (
         items.map(item => (
           <article key={item._id}>
+            <NavLink to={"/details/" + item._id}>
             {
             (() => {
               if (item.img) {
                 return(
-                  <img src={"https://dekpo.herokuapp.com/posts/" + item.img} alt={item.title} />
+                  <img src={"https://dekpo.herokuapp.com/posts/" + item.img} width="100" alt={item.title} />
                 )
               }
             })()
             }
-          <h2>{item.title}</h2>
-          <p>{item.text}</p>
+          <p>{item.title}</p>
+          </NavLink>
           </article>
         ))
       )
@@ -63,4 +65,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default List;
